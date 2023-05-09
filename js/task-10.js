@@ -11,21 +11,28 @@ refs.buttonCreate.addEventListener("click", onButtonCreateClick);
 refs.buttonDestroy.addEventListener('click', onButtonDestroyClick);
 
 function onInputChange(evt) {
-  numberOfBoxes = Number(evt.currentTarget.value);
+  numberOfBoxes = 0;
+  if (
+    evt.currentTarget.value >= +refs.input.min &&
+    evt.currentTarget.value <= +refs.input.max
+  ) {
+    numberOfBoxes = Number(evt.currentTarget.value);
+  };
 }
 
 function onButtonCreateClick() {
   const boxesMarkup = [];
   let widthAndHeight = 30;
-  for (let i = 1; i <= numberOfBoxes; i += 1) {
+  for (let i = 1; i <= numberOfBoxes; i += +refs.input.step) {
     boxesMarkup.push(`<div style="height: ${widthAndHeight}px; width: ${widthAndHeight}px; background-color: ${getRandomHexColor()};"></div>`);
     widthAndHeight += 10;
   };
-  refs.div.insertAdjacentHTML('afterbegin', boxesMarkup.join(''));
+  refs.div.insertAdjacentHTML('beforeend', boxesMarkup.join(''));
 };
 
 function onButtonDestroyClick() {
   refs.div.innerHTML = '';
+  refs.input.value = '';
 }
 
 function getRandomHexColor() {

@@ -6,5 +6,5 @@ refs.input.addEventListener(
   "input",
   () =>
     (refs.span.textContent =
-      refs.input.value === "" ? "Anonymous" : refs.input.value)
+      refs.input.value.trim() === "" ? "Anonymous" : refs.input.value)
 );
