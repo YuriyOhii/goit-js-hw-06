@@ -3,11 +3,13 @@ const inputRef = document.getElementById("validation-input");
 inputRef.addEventListener("blur", onInputBlur);
 
 function onInputBlur() {
-  if (Number(inputRef.value.length) === Number(inputRef.dataset.length)) {
-    inputRef.classList.toggle("invalid");
-    inputRef.classList.add("valid");
-
-    return;
+  if (inputRef.value.length === +inputRef.dataset.length) {
+    return toggleClasses("valid", "invalid");
   }
-  inputRef.classList.add("invalid");
+  toggleClasses("invalid", "valid");
+}
+
+function toggleClasses(classNameToAdd, classNameToRemove) {
+  inputRef.classList.add(`${classNameToAdd}`);
+  inputRef.classList.remove(`${classNameToRemove}`);
 }

@@ -9,13 +9,13 @@ function onFormSubmit(evt) {
   } = evt.currentTarget;
 
   if (email.value.trim() === "" || password.value.trim() === "") {
-    alert("Всі поля мають бути заповнені!!");
-  } else if (email.value.trim() !== "" && password.value.trim() !== "") {
+    return alert("Всі поля мають бути заповнені!!");
+    } 
     const formData = {
       [email.name]: email.value,
       [password.name]: password.value,
       };
       console.table(formData);
-  }
+  
     evt.currentTarget.reset();
-}
+};
